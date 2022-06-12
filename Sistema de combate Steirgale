@@ -1,0 +1,169 @@
+#include <stdlib.h>
+#include<stdio.h>
+#include<string.h>
+    ////////////SELEÇAO DE CLASSES//////////////
+    int Classe(int classe, int jvida, int jsp){   
+
+
+        /////////////////////// SUMARIO :
+        ////////////////////// jvida: VIDA DO JOGADOR
+        ////////////////////// jsp: SP DO JOGADOR         
+
+
+        
+                 
+        classe=0;
+        printf("\n1 - Sou um guerreiro\n2 - Sou um Sacerdote\n3 - Sou um Ladino\n");
+        scanf("%d", &classe);
+            
+            if(classe==1){
+            char classn[10] = {'G','u','e','r','r','e','i','r','o'};
+            jvida = 1000;
+            jsp = 100;
+             printf("\n%s? Boa escolha! Seus stats sao:\n%d de HP\n%d de SP", classn, jvida, jsp);
+            }
+           else if(classe==2){ 
+            char classn[10] = {'S','a','c','e','r','d','o','t','e'};
+            jvida = 100;
+            jsp = 1000;
+             printf("\n%s? Boa escolha! Seus stats sao:\n%d de HP\n%d de SP", classn, jvida, jsp);
+           }    
+            
+            else if(classe==3){
+            char classn[10] = {'L','a','d','i','n','o'};
+            jvida = 500;
+            jsp = 500;
+             printf("\n%s? Boa escolha! Seus stats sao:\n%d de HP\n%d de SP", classn, jvida, jsp);
+            
+
+            
+            
+        }
+        return jvida, jsp, classe;
+   
+    
+    }
+
+
+    /////////////////////////////////////FUNÇAO PARA OS INIMIGOS//////////////////////////
+
+
+
+    int Slime( int vida, int dano){
+        int selec;//SELEÇAO (1 para atacar e 2 para fugir)
+        int danoj; //DANO DO JOGADOR (gerado aleatoriamente)
+        int chance; //CHANCE DE FUGIR CASO O JOGADOR ESCOLHA FUGIR
+        
+        vida=100;// VIDA DO SLIME
+        dano=10; //DANO DO SLIME (falta complementar o código para que o slime ataque)
+        
+        printf("Voce encontrou um slime!\n");
+        
+        for(vida=vida;vida>=0;){
+        printf("1 - ATACAR\n 2 - FUGIR\n");
+        scanf("%d", &selec);
+        
+        if(selec==1){
+            danoj = rand()%15; //DANO 0-14 GERADO ALEATORIAMENTE 
+            printf("Voce deu %d de dano\n", danoj);
+            vida-=danoj; //A VIDA DO SLIME É REDUZIDA DE ACORDO COM O DANO ESCOLHIDO PELO RAND
+            
+            
+            
+        }else if(selec==2){
+            chance = rand()%2; // NUMERO ALEATORIO 0-1 GERADO PARA INDICAR O SUCESSO OU O FRACASSO DO JOGADOR AO FUGIR (0 foge, 1 falha)
+            if(chance==0){
+                printf("Voce escapou");
+                break;
+        }
+        
+        
+        else{
+            printf("Voce falhou!");
+        }
+            
+            
+            
+            
+            
+            
+        }
+        
+
+
+
+
+    }
+        
+        printf("Slime derrotado!\n");
+        
+        
+        
+        
+    }
+    int Ladrao(int vida, int dano){
+            vida = 1000;
+            dano = 12;
+            printf("Voce encontrou um Ladrao!\n");   
+
+
+
+    }int Dragao(int vida, int dano){
+
+        vida=10000;
+        dano=100;
+        printf("Voce encontrou um Dragao!\n");
+
+
+    }int Weeb(long int vida, long int dano){
+        vida=100000000000;
+        dano=100000000000;
+        printf("Voce encontrou um WEEB!\n");
+    }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+    
+
+int main(){
+    
+    char nome [20];
+    int jvida, jsp, clss, sl;
+    int ivida, idano;
+    
+    printf("Olá aventureiro! Por favor insira seu nome:\n");
+    printf("Max:20 caracteres\n");
+    scanf("%s", nome); 
+    printf("%s não é? Belo nome!\nQual sua classe?", nome);
+    Classe(clss,jvida,jsp);
+
+    printf("\n                   teste da mecanica de combate\n");
+
+    sl = rand() % 41; //NUMERO ALEATORIO DE 0-40 PARA SELECIONAR QUAL INIMIGO O JOGADOR DEVERÁ LUTAR
+
+        if((sl>=0)&&(sl<10)){                                 //CASO O NUMERO ESCOLHIDO ESTEJA ENTRE 0 E 10 O JOGADOR LUTARÁ CONTRA UM SLIME
+            Slime(ivida, idano, jvida, jsp);
+        }
+        
+        else if((sl>=11)&&(sl<20)){                          //CASO O NUMERO ESCOLHIDO ESTEJA ENTRE 11 E 20 O JOGADOR LUTARÁ CONTRA UM LADRAO
+            Ladrao(ivida, idano);
+        }
+        
+        else if((sl>=21)&&(sl<=30)){                         //CASO O NUMERO ESCOLHIDO ESTEJA ENTRE 21 E 30 O JOGADOR LUTARÁ CONTRA UM DRAGAO
+            Dragao(ivida, idano);
+        }
+        
+        else if((sl>=31)&&(sl<40)){                          //CASO O NUMERO ESCOLHIDO ESTEJA ENTRE 0 E 10 O JOGADOR LUTARÁ CONTRA UM WEEB
+            Weeb(ivida,idano);
+        }
+    
+
+
+
+
+
+
+
+
+    return 0;
+}
+
